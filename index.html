@@ -1935,7 +1935,7 @@
         // CONFIGURAÇÃO SUPABASE (Substitua pelos seus dados do projeto no Supabase)
         const SUPABASE_URL = 'https://dekoqjzjheivlkctepne.supabase.co';
         const SUPABASE_ANON_KEY = 'sb_publishable_uK3vEwnWY5Rg3wBOG98l5Q_gwa0HGVv';
-        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         const mobileMenuButton =
             document.getElementById("mobileMenuButton");
@@ -1991,7 +1991,7 @@
 
             try {
                 // 1. Salvar no Supabase
-                const { error } = await supabase
+                const { error } = await supabaseClient
                     .from('contatos')
                     .insert([
                         {
