@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo | Cuidado Consciente</title>
+
+    <link rel="icon" type="image/jpeg" href="asset/logo1.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --roxo: #7442ad;
+            --roxo-escuro: #39205b;
+            --roxo-claro: #f1eafa;
+            --branco: #ffffff;
+            --texto: #30283a;
+            --borda: #e5dced;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background-color: #f8f9fa;
+            color: var(--texto);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: var(--branco);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--roxo-claro);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 { color: var(--roxo-escuro); margin: 0; font-size: 24px; }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            padding: 10px 20px;
+            border: none;
+            background: var(--roxo-claro);
+            color: var(--roxo);
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .tab-btn.active {
+            background: var(--roxo);
+            color: var(--branco);
+        }
+
+        .actions {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .export-btn {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .export-btn:hover { background-color: #218838; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--borda);
+        }
+
+        th { background: var(--roxo-claro); color: var(--roxo-escuro); }
+
+        .loading { text-align: center; padding: 40px; color: var(--roxo); font-weight: bold; }
+
+        #loginOverlay {
+            position: fixed;
+            inset: 0;
+            background: var(--branco);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+
+        .login-box {
+            text-align: center;
+            padding: 40px;
+            border: 1px solid var(--borda);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid var(--borda);
+            border-radius: 6px;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: var(--roxo);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Simples proteção por senha para não deixar os dados abertos -->
+    <div id="loginOverlay">
+        <div class="login-box">
+            <img src="asset/logo1.jpg" alt="Logo" style="width: 80px; border-radius: 50%; margin-bottom: 20px;">
+            <h2>Acesso Restrito</h2>
+            <p>Insira a chave de acesso para visualizar os dados.</p>
+            <input type="password" id="adminPassword" placeholder="Sua senha">
+            <button class="btn-login" onclick="checkAuth()">Entrar</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Painel de Controle - Cuidado Consciente</h1>
+            <button onclick="logout()" style="background:none; border:none; color:red; cursor:pointer; font-weight:bold;">Sair</button>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTab('contatos', this)">Contatos (Site)</button>
+            <button class="tab-btn" onclick="switchTab('candidaturas', this)">Candidaturas (Trabalhe Conosco)</button>
+        </div>
+
+        <div class="actions">
+            <button class="export-btn" onclick="exportToExcel()">
+                📊 Exportar para Excel (.xlsx)
+            </button>
+        </div>
+
+        <div id="tableContainer">
+            <div class="loading">Carregando dados...</div>
+        </div>
+    </div>
+
+    <!-- Bibliotecas -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <script>
+        // CONFIGURAÇÃO SUPABASE
+        const SUPABASE_URL = 'SUA_URL_DO_SUPABASE';
+        const SUPABASE_ANON_KEY = 'SUA_CHAVE_ANON_DO_SUPABASE';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        let currentTab = 'contatos';
+        let currentData = [];
+
+        // Proteção simples (MUDE ESTA SENHA)
+        const ADMIN_PASS = "admin123";
+
+        function checkAuth() {
+            const pass = document.getElementById('adminPassword').value;
+            if(pass === ADMIN_PASS) {
+                document.getElementById('loginOverlay').style.display = 'none';
+                loadData();
+            } else {
+                alert("Senha incorreta!");
+            }
+        }
+
+        function logout() {
+            location.reload();
+        }
+
+        async function loadData() {
+            const container = document.getElementById('tableContainer');
+            container.innerHTML = '<div class="loading">Buscando informações no banco...</div>';
+
+            try {
+                const { data, error } = await supabaseClient
+                    .from(currentTab)
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                currentData = data;
+                renderTable(data);
+            } catch (err) {
+                container.innerHTML = `<div style="color:red">Erro ao carregar: ${err.message}</div>`;
+            }
+        }
+
+        function renderTable(data) {
+            const container = document.getElementById('tableContainer');
+            if (data.length === 0) {
+                container.innerHTML = '<p>Nenhum registro encontrado.</p>';
+                return;
+            }
+
+            let html = '<table><thead><tr>';
+
+            // Cabeçalhos baseados nas chaves do primeiro objeto
+            const headers = Object.keys(data[0]);
+            headers.forEach(h => html += `<th>${h.toUpperCase()}</th>`);
+            html += '</tr></thead><tbody>';
+
+            data.forEach(row => {
+                html += '<tr>';
+                headers.forEach(h => {
+                    let val = row[h] || '-';
+                    if (h === 'created_at') val = new Date(val).toLocaleString('pt-BR');
+                    html += `<td>${val}</td>`;
+                });
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        function switchTab(tab, btn) {
+            currentTab = tab;
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            loadData();
+        }
+
+        function exportToExcel() {
+            if (currentData.length === 0) {
+                alert("Não há dados para exportar.");
+                return;
+            }
+
+            const worksheet = XLSX.utils.json_to_sheet(currentData);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, currentTab);
+
+            const fileName = `Cuidado_Consciente_${currentTab}_${new Date().toISOString().slice(0,10)}.xlsx`;
+            XLSX.writeFile(workbook, fileName);
+        }
+    </script>
+</body>
+</html>

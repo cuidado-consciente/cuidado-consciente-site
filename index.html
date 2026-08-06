@@ -1,0 +1,2089 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cuidado Consciente | Apoio Domiciliário</title>
+
+    <meta name="description" content="Cuidado Consciente - Apoio domiciliário personalizado para idosos, crianças e famílias em Portugal.">
+    <meta name="author" content="Cuidado Consciente">
+
+    <link rel="icon" type="image/jpeg" href="asset/logo1.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --roxo: #7442ad;
+            --roxo-escuro: #39205b;
+            --roxo-medio: #9466c7;
+            --roxo-claro: #f1eafa;
+            --lavanda: #faf8fd;
+            --branco: #ffffff;
+            --texto: #30283a;
+            --texto-suave: #756c80;
+            --borda: #e5dced;
+            --verde: #25b66f;
+            --sombra: 0 18px 45px rgba(61, 34, 95, .12);
+            --raio: 22px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+            color: var(--texto);
+            background: var(--branco);
+            font-family: "DM Sans", Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        .container {
+            width: min(1160px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* Barra superior */
+
+        .topbar {
+            color: var(--branco);
+            background: var(--roxo-escuro);
+            font-size: 13px;
+        }
+
+        .topbar-content {
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .topbar-right {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* Cabeçalho */
+
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            border-bottom: 1px solid rgba(111, 66, 168, .1);
+            background: rgba(255, 255, 255, .95);
+            backdrop-filter: blur(14px);
+        }
+
+        .nav {
+            min-height: 88px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .logo {
+            min-width: 220px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            width: 58px;
+            height: 58px;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            color: var(--roxo-escuro);
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .logo-text small {
+            display: block;
+            margin-top: 5px;
+            color: var(--roxo);
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+            gap: 21px;
+            color: #554c5e;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .menu a {
+            transition: .25s ease;
+        }
+
+        .menu a:hover {
+            color: var(--roxo);
+        }
+
+        .menu-button,
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: .25s ease;
+        }
+
+        .menu-button {
+            padding: 13px 18px;
+            color: var(--branco) !important;
+            background: var(--roxo);
+            box-shadow: 0 8px 18px rgba(111, 66, 168, .22);
+        }
+
+        .menu-button:hover {
+            color: var(--branco) !important;
+            background: var(--roxo-escuro);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-button {
+            display: none;
+            width: 42px;
+            height: 42px;
+            border: 0;
+            border-radius: 10px;
+            color: var(--roxo);
+            background: var(--roxo-claro);
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        /* Destaque do link no menu */
+
+        .work-menu-link {
+            padding: 10px 15px;
+            border: 1px solid rgba(111, 66, 168, .28);
+            border-radius: 999px;
+            color: var(--roxo-escuro) !important;
+            background: var(--roxo-claro);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .work-menu-link:hover {
+            color: var(--branco) !important;
+            border-color: var(--roxo);
+            background: var(--roxo);
+        }
+
+        /* Banner */
+
+        .hero {
+            position: relative;
+            min-height: 680px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(45, 25, 71, .91) 0%,
+                    rgba(63, 32, 95, .68) 46%,
+                    rgba(63, 32, 95, .12) 100%
+                ),
+                url("asset/imagem%20(6).jpeg") center 36% / cover no-repeat;
+        }
+
+        .hero-content {
+            max-width: 610px;
+            padding: 80px 0;
+            color: var(--branco);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 18px;
+            color: var(--roxo);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 30px;
+            height: 2px;
+            background: currentColor;
+        }
+
+        .hero .eyebrow {
+            color: #e7d9f6;
+        }
+
+        h1,
+        h2 {
+            font-family: "Playfair Display", Georgia, serif;
+        }
+
+        h1 {
+            margin-bottom: 24px;
+            color: var(--branco);
+            font-size: clamp(42px, 5.5vw, 72px);
+            line-height: 1.08;
+            letter-spacing: -1.7px;
+        }
+
+        h2 {
+            margin-bottom: 17px;
+            color: var(--roxo-escuro);
+            font-size: clamp(34px, 4vw, 52px);
+            line-height: 1.15;
+        }
+
+        h3 {
+            line-height: 1.15;
+        }
+
+        .hero p {
+            max-width: 550px;
+            margin-bottom: 32px;
+            color: #f6f0fb;
+            font-size: 18px;
+        }
+
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .button {
+            min-height: 52px;
+            padding: 0 23px;
+            border: 2px solid transparent;
+        }
+
+        .button-primary {
+            color: var(--roxo-escuro);
+            background: var(--branco);
+        }
+
+        .button-primary:hover {
+            background: #ede4f7;
+            transform: translateY(-2px);
+        }
+
+        .button-outline {
+            color: var(--branco);
+            border-color: rgba(255, 255, 255, .65);
+        }
+
+        .button-outline:hover {
+            background: rgba(255, 255, 255, .13);
+        }
+
+        .hero-badge {
+            position: absolute;
+            right: 8%;
+            bottom: 55px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            max-width: 250px;
+            padding: 17px 20px;
+            color: var(--texto);
+            background: rgba(255, 255, 255, .95);
+            border-radius: 18px;
+            box-shadow: var(--sombra);
+        }
+
+        .hero-badge-icon {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            flex: 0 0 44px;
+            place-items: center;
+            color: var(--branco);
+            background: var(--roxo);
+            border-radius: 50%;
+            font-size: 21px;
+        }
+
+        .hero-badge strong,
+        .hero-badge span {
+            display: block;
+        }
+
+        .hero-badge strong {
+            font-size: 14px;
+        }
+
+        .hero-badge span {
+            color: var(--texto-suave);
+            font-size: 12px;
+        }
+
+        /* Estrutura geral */
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-heading {
+            max-width: 680px;
+            margin-bottom: 48px;
+        }
+
+        .section-heading.center {
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+        }
+
+        .section-heading p {
+            color: var(--texto-suave);
+            font-size: 17px;
+        }
+
+        /* Sobre */
+
+        .intro {
+            background: var(--lavanda);
+        }
+
+        .intro-grid,
+        .why-grid,
+        .contact-grid {
+            display: grid;
+            align-items: center;
+            gap: 65px;
+        }
+
+        .intro-grid,
+        .why-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .intro-images {
+            position: relative;
+            min-height: 510px;
+        }
+
+        .intro-image-main {
+            width: 76%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 120px 22px 22px 22px;
+            box-shadow: var(--sombra);
+        }
+
+        .intro-image-small {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 46%;
+            height: 245px;
+            object-fit: cover;
+            border: 9px solid var(--lavanda);
+            border-radius: 22px 22px 100px 22px;
+            box-shadow: var(--sombra);
+        }
+
+        .intro-content p {
+            margin-bottom: 18px;
+            color: var(--texto-suave);
+        }
+
+        .check-list {
+            display: grid;
+            gap: 13px;
+            margin: 27px 0 30px;
+        }
+
+        .check-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            list-style: none;
+            font-weight: 600;
+        }
+
+        .check-list li::before {
+            content: "✓";
+            width: 25px;
+            height: 25px;
+            display: grid;
+            flex: 0 0 25px;
+            place-items: center;
+            color: var(--branco);
+            background: var(--roxo);
+            border-radius: 50%;
+            font-size: 13px;
+        }
+
+        .about-logo-wrapper {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid var(--borda);
+        }
+
+        .about-logo {
+            width: 190px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .about-logo-caption {
+            margin-top: 8px;
+            color: var(--texto-suave);
+            font-size: 12px;
+        }
+
+        /* Serviços */
+
+        .services,
+        .gallery {
+            background: var(--branco);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .service-card {
+            padding: 31px 28px;
+            border: 1px solid var(--borda);
+            border-radius: var(--raio);
+            background: var(--branco);
+            transition: .28s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--roxo-medio);
+            transform: translateY(-7px);
+            box-shadow: var(--sombra);
+        }
+
+        .service-icon {
+            width: 57px;
+            height: 57px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 21px;
+            color: var(--roxo);
+            background: var(--roxo-claro);
+            border-radius: 16px;
+            font-size: 26px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 10px;
+            color: var(--roxo-escuro);
+            font-size: 20px;
+        }
+
+        .service-card p,
+        .process-card p {
+            color: var(--texto-suave);
+            font-size: 14px;
+        }
+
+        /* Diferenciais */
+
+        .why {
+            color: var(--branco);
+            background: var(--roxo-escuro);
+        }
+
+        .why .section-heading h2 {
+            color: var(--branco);
+        }
+
+        .why .section-heading p {
+            color: #ddd0e9;
+        }
+
+        .why-image {
+            width: 100%;
+            height: 550px;
+            object-fit: cover;
+            border-radius: 24px 130px 24px 24px;
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px 20px;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .benefit-icon {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            flex: 0 0 44px;
+            place-items: center;
+            color: var(--roxo-escuro);
+            background: #eadcf7;
+            border-radius: 13px;
+            font-size: 20px;
+        }
+
+        .benefit h3 {
+            margin-bottom: 5px;
+            color: var(--branco);
+            font-size: 16px;
+        }
+
+        .benefit p {
+            color: #d4c7e0;
+            font-size: 13px;
+        }
+
+        /* Processo */
+
+        .process {
+            background: var(--lavanda);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .process-card {
+            padding: 30px 22px;
+            text-align: center;
+            background: var(--branco);
+            border-radius: var(--raio);
+            box-shadow: 0 10px 30px rgba(61, 34, 95, .06);
+        }
+
+        .process-number {
+            width: 53px;
+            height: 53px;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 20px;
+            color: var(--branco);
+            background: var(--roxo);
+            border-radius: 50%;
+            font-weight: 700;
+        }
+
+        .process-card h3 {
+            margin-bottom: 9px;
+            color: var(--roxo-escuro);
+            font-size: 17px;
+        }
+
+        /* Cuidado em ação */
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 220px;
+            gap: 15px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 18px;
+            cursor: pointer;
+            background: var(--roxo-claro);
+        }
+
+        .gallery-item:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item:nth-child(4) {
+            grid-column: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .45s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.07);
+        }
+
+        /* CTA */
+
+        .cta {
+            padding: 82px 0;
+            background:
+                linear-gradient(90deg, rgba(58, 32, 94, .94), rgba(111, 66, 168, .79)),
+                url("asset/imagem%20(2).jpeg") center / cover;
+        }
+
+        .cta-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 35px;
+        }
+
+        .cta h2 {
+            max-width: 650px;
+            margin: 0;
+            color: var(--branco);
+        }
+
+        /* Contacto */
+
+        .contact {
+            background: var(--lavanda);
+        }
+
+        .contact-grid {
+            grid-template-columns: .85fr 1.15fr;
+            align-items: start;
+        }
+
+        .contact-info .section-heading p {
+            color: var(--texto-suave);
+        }
+
+        .contact-links {
+            display: grid;
+            gap: 16px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-weight: 600;
+        }
+
+        .contact-link-icon {
+            width: 66px;
+            height: 66px;
+            display: grid;
+            flex: 0 0 66px;
+            place-items: center;
+            color: var(--roxo);
+            background: var(--branco);
+            border-radius: 17px;
+            font-size: 25px;
+            box-shadow: 0 5px 18px rgba(61, 34, 95, .05);
+        }
+
+        .contact-link small {
+            display: block;
+            margin-bottom: 2px;
+            color: var(--texto-suave);
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        .contact-link strong {
+            display: block;
+            color: var(--texto);
+            font-size: 23px;
+            line-height: 1.2;
+        }
+
+        /*
+         * DESTAQUE PRINCIPAL:
+         * Este é o bloco "Oportunidades / Trabalhe Conosco"
+         * mostrado na imagem enviada.
+         */
+
+        .work-contact-link {
+            position: relative;
+            margin: 4px 0;
+            padding: 10px 12px;
+            border: 2px solid var(--roxo);
+            border-radius: 20px;
+            background: linear-gradient(
+                135deg,
+                rgba(242, 236, 250, .95),
+                rgba(255, 255, 255, .98)
+            );
+            box-shadow: 0 10px 24px rgba(111, 66, 168, .13);
+            transition: .25s ease;
+        }
+
+        .work-contact-link::before {
+            content: "";
+            position: absolute;
+            left: -2px;
+            top: 12px;
+            bottom: 12px;
+            width: 5px;
+            border-radius: 0 5px 5px 0;
+            background: var(--roxo);
+        }
+
+        .work-contact-link:hover {
+            border-color: var(--roxo-escuro);
+            background: var(--roxo-claro);
+            transform: translateX(5px);
+            box-shadow: 0 14px 28px rgba(111, 66, 168, .2);
+        }
+
+        .work-contact-link .contact-link-icon {
+            color: var(--branco);
+            background: var(--roxo);
+        }
+
+        .work-contact-link small {
+            color: var(--roxo);
+            font-weight: 700;
+        }
+
+        .work-contact-link strong {
+            color: var(--roxo-escuro);
+        }
+
+        .contact-form {
+            padding: 34px;
+            background: var(--branco);
+            border-radius: var(--raio);
+            box-shadow: var(--sombra);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--roxo-escuro);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid var(--borda);
+            outline: none;
+            color: var(--texto);
+            background: var(--lavanda);
+            border-radius: 11px;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--roxo);
+            box-shadow: 0 0 0 3px rgba(111, 66, 168, .1);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            width: 100%;
+            border: 0;
+            cursor: pointer;
+            color: var(--branco);
+            background: var(--roxo);
+        }
+
+        .form-submit:hover {
+            background: var(--roxo-escuro);
+        }
+
+        .form-note {
+            margin-top: 12px;
+            color: var(--texto-suave);
+            font-size: 11px;
+            text-align: center;
+        }
+
+        /* Rodapé */
+
+        .footer {
+            padding: 55px 0 25px;
+            color: #d8cce3;
+            background: #28163f;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.3fr .8fr .8fr;
+            gap: 45px;
+            padding-bottom: 40px;
+        }
+
+        .footer .logo-text,
+        .footer h3 {
+            color: var(--branco);
+        }
+
+        .footer .logo-text small {
+            color: #cbb5e2;
+        }
+
+        .footer-description {
+            max-width: 330px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .footer h3 {
+            margin-bottom: 17px;
+            font-size: 16px;
+        }
+
+        .footer ul {
+            display: grid;
+            gap: 10px;
+            list-style: none;
+            font-size: 14px;
+        }
+
+        .footer a:hover {
+            color: var(--branco);
+        }
+
+        .footer .work-footer-link {
+            display: inline-flex;
+            padding: 9px 13px;
+            border: 1px solid rgba(255, 255, 255, .35);
+            border-radius: 999px;
+            color: var(--branco);
+            background: rgba(255, 255, 255, .12);
+            font-weight: 700;
+        }
+
+        .footer .work-footer-link:hover {
+            background: var(--roxo);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-top: 22px;
+            border-top: 1px solid rgba(255, 255, 255, .13);
+            font-size: 12px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            display: grid;
+            place-items: center;
+            color: var(--branco);
+            background: rgba(255, 255, 255, .1);
+            border-radius: 50%;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .social-links a:hover {
+            background: var(--roxo);
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 30;
+            width: 60px;
+            height: 60px;
+            display: grid;
+            place-items: center;
+            color: var(--branco);
+            background: var(--verde);
+            border-radius: 50%;
+            box-shadow: 0 10px 25px rgba(37, 182, 111, .35);
+            font-size: 27px;
+        }
+
+        /* Lightbox */
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 50;
+            display: none;
+            place-items: center;
+            padding: 25px;
+            background: rgba(29, 15, 43, .9);
+        }
+
+        .lightbox.active {
+            display: grid;
+        }
+
+        .lightbox img {
+            max-width: 95vw;
+            max-height: 88vh;
+            border-radius: 13px;
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            border: 0;
+            color: var(--branco);
+            background: transparent;
+            cursor: pointer;
+            font-size: 37px;
+        }
+
+        /* Responsividade */
+
+        @media (max-width: 1050px) {
+            .menu {
+                gap: 12px;
+                font-size: 13px;
+            }
+
+            .menu-button {
+                padding: 11px 14px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .menu {
+                position: absolute;
+                top: 88px;
+                right: 20px;
+                left: 20px;
+                display: none;
+                align-items: stretch;
+                flex-direction: column;
+                gap: 7px;
+                padding: 12px;
+                background: var(--branco);
+                border: 1px solid var(--borda);
+                border-radius: 16px;
+                box-shadow: var(--sombra);
+            }
+
+            .menu.active {
+                display: flex;
+            }
+
+            .menu a {
+                padding: 13px 15px;
+            }
+
+            .work-menu-link {
+                text-align: center;
+            }
+
+            .mobile-menu-button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .intro-grid,
+            .why-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .service-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .footer-grid > div:first-child {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .container {
+                width: min(100% - 28px, 1160px);
+            }
+
+            .topbar-content {
+                justify-content: center;
+                min-height: 36px;
+            }
+
+            .topbar-right {
+                display: none;
+            }
+
+            .nav {
+                min-height: 76px;
+            }
+
+            .logo {
+                min-width: 0;
+            }
+
+            .logo img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .logo-text {
+                font-size: 16px;
+            }
+
+            .hero {
+                min-height: 650px;
+                background-position: 62% center;
+            }
+
+            .hero-content {
+                padding: 60px 0 130px;
+            }
+
+            h1 {
+                font-size: 43px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .hero-badge {
+                right: 14px;
+                bottom: 25px;
+            }
+
+            section {
+                padding: 72px 0;
+            }
+
+            .intro-images {
+                min-height: 390px;
+            }
+
+            .intro-image-main {
+                width: 85%;
+                height: 350px;
+            }
+
+            .intro-image-small {
+                width: 48%;
+                height: 180px;
+            }
+
+            .service-grid,
+            .process-grid,
+            .benefit-grid,
+            .form-row,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid > div:first-child {
+                grid-column: auto;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 150px;
+            }
+
+            .gallery-item:first-child {
+                grid-column: span 2;
+                grid-row: span 2;
+            }
+
+            .gallery-item:nth-child(4) {
+                grid-column: span 1;
+            }
+
+            .cta-content {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .contact-form {
+                padding: 23px 18px;
+            }
+
+            .contact-link-icon {
+                width: 58px;
+                height: 58px;
+                flex-basis: 58px;
+            }
+
+            .contact-link strong {
+                font-size: 19px;
+            }
+
+            .contact-link small {
+                font-size: 14px;
+            }
+
+            .footer-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="container topbar-content">
+            <span>✦ Cuidado próximo, humano e consciente</span>
+
+            <div class="topbar-right">
+                <span>📞 +351 926 374 466</span>
+                <span>Atendimento em Portugal</span>
+            </div>
+        </div>
+    </div>
+
+    <header class="header">
+        <div class="container nav">
+
+            <a href="#inicio" class="logo" aria-label="Cuidado Consciente - início">
+                <img src="asset/logo1.jpg" alt="Logótipo Cuidado Consciente">
+
+                <div class="logo-text">
+                    Cuidado Consciente
+                    <small>Cuidar de dentro para fora</small>
+                </div>
+            </a>
+
+            <nav class="menu" id="menu">
+                <a href="#inicio">Início</a>
+                <a href="#sobre">Sobre nós</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#processo">Como funciona</a>
+                <a href="#contacto">Contacto</a>
+
+                <a
+                    class="work-menu-link"
+                    href="trabalhe-conosco.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Trabalhe Conosco
+                </a>
+
+                <a
+                    class="menu-button"
+                    href="https://wa.me/351926374466?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20do%20Cuidado%20Consciente."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Falar connosco
+                </a>
+            </nav>
+
+            <button
+                class="mobile-menu-button"
+                id="mobileMenuButton"
+                type="button"
+                aria-label="Abrir menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Banner -->
+
+        <section class="hero" id="inicio">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="eyebrow">Cuidado que transforma</div>
+
+                    <h1>Presença, carinho e confiança todos os dias.</h1>
+
+                    <p>
+                        Apoio domiciliário personalizado para idosos, crianças,
+                        famílias e todos aqueles que precisam de cuidado com
+                        respeito, dedicação e humanidade.
+                    </p>
+
+                    <div class="button-group">
+                        <a class="button button-primary" href="#contacto">
+                            Pedir informação →
+                        </a>
+
+                        <a class="button button-outline" href="#servicos">
+                            Conhecer serviços
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-badge">
+                <div class="hero-badge-icon">♡</div>
+
+                <div>
+                    <strong>Cuidado personalizado</strong>
+                    <span>Cada pessoa merece atenção especial.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sobre nós -->
+
+        <section class="intro" id="sobre">
+            <div class="container intro-grid">
+
+                <div class="intro-images">
+                    <img
+                        class="intro-image-main"
+                        src="asset/imagem%20(3).jpeg"
+                        alt="Profissional a prestar cuidados"
+                    >
+
+                    <img
+                        class="intro-image-small"
+                        src="asset/imagem%20(4).jpeg"
+                        alt="Profissional a acompanhar uma criança"
+                    >
+                </div>
+
+                <div class="intro-content">
+                    <div class="eyebrow">Sobre o Cuidado Consciente</div>
+
+                    <h2>Cuidar é estar presente em cada detalhe.</h2>
+
+                    <p>
+                        O Cuidado Consciente nasceu para oferecer apoio próximo,
+                        seguro e humanizado a famílias que procuram tranquilidade
+                        e bem-estar para quem mais amam.
+                    </p>
+
+                    <p>
+                        Acreditamos que cuidar vai muito além de ajudar nas tarefas
+                        do dia a dia. É ouvir, acompanhar, respeitar rotinas e
+                        criar relações baseadas na confiança.
+                    </p>
+
+                    <ul class="check-list">
+                        <li>Acompanhamento individualizado</li>
+                        <li>Profissionais cuidadosos e dedicados</li>
+                        <li>Respeito pela rotina e autonomia</li>
+                        <li>Comunicação próxima com a família</li>
+                    </ul>
+
+                    <a class="button menu-button" href="#contacto">
+                        Conheça o nosso trabalho
+                    </a>
+
+                    <div class="about-logo-wrapper">
+                        <img
+                            class="about-logo"
+                            src="asset/logo2.jpeg"
+                            alt="Logótipo institucional"
+                        >
+
+                        <p class="about-logo-caption">
+                            Informação institucional
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Serviços -->
+
+        <section class="services" id="servicos">
+            <div class="container">
+
+                <div class="section-heading center">
+                    <div class="eyebrow">Os nossos serviços</div>
+
+                    <h2>Apoio pensado para cada fase da vida</h2>
+
+                    <p>
+                        Soluções flexíveis e personalizadas para proporcionar
+                        mais conforto, segurança e qualidade de vida.
+                    </p>
+                </div>
+
+                <div class="service-grid">
+
+                    <article class="service-card">
+                        <div class="service-icon">♥</div>
+                        <h3>Apoio a idosos</h3>
+                        <p>
+                            Companhia, apoio nas atividades diárias e acompanhamento
+                            próximo no conforto do lar.
+                        </p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon">♧</div>
+                        <h3>Acompanhamento infantil</h3>
+                        <p>
+                            Cuidados, acompanhamento e atividades adequadas para
+                            crianças, com carinho e responsabilidade.
+                        </p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon">☼</div>
+                        <h3>Companhia e acompanhamento</h3>
+                        <p>
+                            Presença em casa, em consultas, passeios ou noutras
+                            situações em que seja necessário apoio.
+                        </p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon">✦</div>
+                        <h3>Higiene e conforto</h3>
+                        <p>
+                            Apoio respeitoso nos cuidados pessoais, mantendo sempre
+                            a dignidade e a privacidade de cada pessoa.
+                        </p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon">⌂</div>
+                        <h3>Apoio no lar</h3>
+                        <p>
+                            Ajuda nas tarefas domésticas, organização dos espaços
+                            e preparação de refeições.
+                        </p>
+                    </article>
+
+                    <article class="service-card">
+                        <div class="service-icon">☘</div>
+                        <h3>Cuidados personalizados</h3>
+                        <p>
+                            Um plano de apoio adaptado às necessidades, hábitos e
+                            preferências de cada família.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Porquê escolher-nos -->
+
+        <section class="why">
+            <div class="container why-grid">
+
+                <div>
+                    <img
+                        class="why-image"
+                        src="asset/imagem%20(1).jpeg"
+                        alt="Profissional a acompanhar uma pessoa idosa"
+                    >
+                </div>
+
+                <div>
+                    <div class="section-heading">
+                        <div class="eyebrow">Porquê escolher-nos</div>
+
+                        <h2>Mais tranquilidade para toda a família.</h2>
+
+                        <p>
+                            Sabemos que escolher alguém para cuidar de quem ama
+                            exige confiança. Por isso, colocamos o respeito e a
+                            atenção humana no centro de tudo o que fazemos.
+                        </p>
+                    </div>
+
+                    <div class="benefit-grid">
+
+                        <div class="benefit">
+                            <div class="benefit-icon">♡</div>
+                            <div>
+                                <h3>Atendimento humano</h3>
+                                <p>Cada pessoa é tratada com carinho e respeito.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit">
+                            <div class="benefit-icon">✓</div>
+                            <div>
+                                <h3>Confiança e segurança</h3>
+                                <p>Um serviço pensado para trazer tranquilidade.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit">
+                            <div class="benefit-icon">⌂</div>
+                            <div>
+                                <h3>No conforto do lar</h3>
+                                <p>O apoio acontece num ambiente familiar e seguro.</p>
+                            </div>
+                        </div>
+
+                        <div class="benefit">
+                            <div class="benefit-icon">✦</div>
+                            <div>
+                                <h3>Planos flexíveis</h3>
+                                <p>Adaptamos o apoio à realidade de cada família.</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Como funciona -->
+
+        <section class="process" id="processo">
+            <div class="container">
+
+                <div class="section-heading center">
+                    <div class="eyebrow">Como funciona</div>
+
+                    <h2>Começar é simples</h2>
+
+                    <p>
+                        Estamos disponíveis para ouvir as suas necessidades e
+                        encontrar a solução mais adequada.
+                    </p>
+                </div>
+
+                <div class="process-grid">
+
+                    <article class="process-card">
+                        <div class="process-number">01</div>
+                        <h3>Entre em contacto</h3>
+                        <p>
+                            Fale connosco por telefone, WhatsApp ou formulário.
+                        </p>
+                    </article>
+
+                    <article class="process-card">
+                        <div class="process-number">02</div>
+                        <h3>Conversamos consigo</h3>
+                        <p>
+                            Conhecemos a situação e percebemos as suas necessidades.
+                        </p>
+                    </article>
+
+                    <article class="process-card">
+                        <div class="process-number">03</div>
+                        <h3>Definimos o apoio</h3>
+                        <p>
+                            Apresentamos uma solução adequada à sua rotina.
+                        </p>
+                    </article>
+
+                    <article class="process-card">
+                        <div class="process-number">04</div>
+                        <h3>Começamos a cuidar</h3>
+                        <p>
+                            Iniciamos o acompanhamento com proximidade e dedicação.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Cuidado em ação -->
+
+        <section class="gallery" id="galeria">
+            <div class="container">
+
+                <div class="section-heading center">
+                    <div class="eyebrow">Cuidado em ação</div>
+
+                    <h2>Cuidado em ação</h2>
+
+                    <p>
+                        O nosso trabalho é feito de gestos simples que fazem
+                        toda a diferença.
+                    </p>
+                </div>
+
+                <div class="gallery-grid">
+
+                    <div class="gallery-item">
+                        <img src="asset/imagem%20(6).jpeg" alt="Cuidado domiciliário">
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="asset/imagem%20(1).jpeg" alt="Apoio e acompanhamento infantil">
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="asset/imagem%20(2).jpeg" alt="Cuidados de higiene e conforto">
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="asset/imagem%20(3).jpeg" alt="Profissional a prestar cuidados">
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="asset/imagem%20(4).jpeg" alt="Profissional a acompanhar uma criança">
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="asset/imagem%20(5).jpeg" alt="Acompanhamento infantil">
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="asset/imagem%20(7).jpeg" alt="Profissional de cuidados">
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="asset/imagem%20(8).jpeg" alt="Apoio nas tarefas do lar">
+                    </div>
+
+                    <div class="gallery-item">
+                        <img src="asset/imagem%20(9).jpeg" alt="Acompanhamento personalizado">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Chamada para ação -->
+
+        <section class="cta">
+            <div class="container cta-content">
+                <h2>
+                    Está à procura de apoio para si ou para alguém especial?
+                </h2>
+
+                <a
+                    class="button button-primary"
+                    href="https://wa.me/351926374466?text=Olá%2C%20gostaria%20de%20pedir%20informações%20sobre%20o%20Cuidado%20Consciente."
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Falar pelo WhatsApp →
+                </a>
+            </div>
+        </section>
+
+        <!-- Contacto -->
+
+        <section class="contact" id="contacto">
+            <div class="container contact-grid">
+
+                <div class="contact-info">
+                    <div class="section-heading">
+                        <div class="eyebrow">Entre em contacto</div>
+
+                        <h2>Estamos aqui para ajudar.</h2>
+
+                        <p>
+                            Conte-nos um pouco sobre o que precisa. Teremos todo
+                            o gosto em conversar consigo e esclarecer as suas dúvidas.
+                        </p>
+                    </div>
+
+                    <div class="contact-links">
+
+                        <a class="contact-link" href="tel:+351926374466">
+                            <span class="contact-link-icon">☎</span>
+
+                            <div>
+                                <small>Telefone</small>
+                                <strong>+351 926 374 466</strong>
+                            </div>
+                        </a>
+
+                        <a
+                            class="contact-link"
+                            href="https://wa.me/351926374466"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <span class="contact-link-icon">◉</span>
+
+                            <div>
+                                <small>WhatsApp</small>
+                                <strong>Enviar mensagem</strong>
+                            </div>
+                        </a>
+
+                        <a
+                            class="contact-link"
+                            href="https://www.instagram.com/cuidadoconsciente2026/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <span class="contact-link-icon">◎</span>
+
+                            <div>
+                                <small>Instagram</small>
+                                <strong>@cuidadoconsciente2026</strong>
+                            </div>
+                        </a>
+
+                        <a
+                            class="contact-link"
+                            href="https://www.facebook.com/share/1EDR1vhhKC/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <span class="contact-link-icon">f</span>
+
+                            <div>
+                                <small>Facebook</small>
+                                <strong>Cuidado Consciente</strong>
+                            </div>
+                        </a>
+
+                        <!-- LINK DESTACADO CORRETAMENTE -->
+                        <a
+                            class="contact-link work-contact-link"
+                            href="trabalhe-conosco.html"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Abrir Trabalhe Conosco numa nova aba"
+                        >
+                            <span class="contact-link-icon">♟</span>
+
+                            <div>
+                                <small>Oportunidades</small>
+                                <strong>Trabalhe Conosco</strong>
+                            </div>
+                        </a>
+
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input
+                                type="text"
+                                id="nome"
+                                name="nome"
+                                placeholder="O seu nome"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input
+                                type="tel"
+                                id="telefone"
+                                name="telefone"
+                                placeholder="+351 ..."
+                                required
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="nome@email.com"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="servico">Serviço pretendido</label>
+
+                        <select id="servico" name="servico" required>
+                            <option value="">Selecione uma opção</option>
+                            <option value="Apoio a idosos">Apoio a idosos</option>
+                            <option value="Acompanhamento infantil">
+                                Acompanhamento infantil
+                            </option>
+                            <option value="Companhia e acompanhamento">
+                                Companhia e acompanhamento
+                            </option>
+                            <option value="Higiene e conforto">
+                                Higiene e conforto
+                            </option>
+                            <option value="Apoio no lar">Apoio no lar</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem</label>
+
+                        <textarea
+                            id="mensagem"
+                            name="mensagem"
+                            placeholder="Escreva aqui como podemos ajudar..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button class="button form-submit" type="submit">
+                        Enviar pelo WhatsApp →
+                    </button>
+
+                    <p class="form-note">
+                        Ao enviar, será aberta uma conversa no WhatsApp.
+                    </p>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div>
+                    <a href="#inicio" class="logo">
+                        <img src="asset/logo1.jpg" alt="Logótipo Cuidado Consciente">
+
+                        <div class="logo-text">
+                            Cuidado Consciente
+                            <small>Cuidar de dentro para fora</small>
+                        </div>
+                    </a>
+
+                    <p class="footer-description">
+                        Apoio domiciliário com humanidade, respeito e dedicação
+                        para tornar os dias mais tranquilos.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Navegação</h3>
+
+                    <ul>
+                        <li><a href="#sobre">Sobre nós</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#processo">Como funciona</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+
+                        <li>
+                            <a
+                                class="work-footer-link"
+                                href="trabalhe-conosco.html"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Trabalhe Conosco
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3>Contactos</h3>
+
+                    <ul>
+                        <li>
+                            <a href="tel:+351926374466">
+                                +351 926 374 466
+                            </a>
+                        </li>
+
+                        <li>
+                            <a
+                                href="https://wa.me/351926374466"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                WhatsApp
+                            </a>
+                        </li>
+
+                        <li>Portugal</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="footer-bottom">
+                <span>
+                    © <span id="year"></span> Cuidado Consciente.
+                    Todos os direitos reservados.
+                </span>
+
+                <div class="social-links">
+                    <a
+                        href="https://www.instagram.com/cuidadoconsciente2026/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        IG
+                    </a>
+
+                    <a
+                        href="https://www.facebook.com/share/1EDR1vhhKC/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        f
+                    </a>
+
+                    <a
+                        href="https://wa.me/351926374466"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        WA
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a
+        class="whatsapp-float"
+        href="https://wa.me/351926374466?text=Olá%2C%20gostaria%20de%20saber%20mais%20sobre%20os%20serviços%20do%20Cuidado%20Consciente."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Contactar pelo WhatsApp"
+    >
+        ◉
+    </a>
+
+    <div class="lightbox" id="lightbox">
+        <button
+            class="lightbox-close"
+            id="lightboxClose"
+            type="button"
+            aria-label="Fechar imagem"
+        >
+            ×
+        </button>
+
+        <img id="lightboxImage" src="" alt="Imagem ampliada">
+    </div>
+
+    <!-- Scripts de Integração -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // CONFIGURAÇÃO SUPABASE (Substitua pelos seus dados do projeto no Supabase)
+        const SUPABASE_URL = 'SUA_URL_DO_SUPABASE';
+        const SUPABASE_ANON_KEY = 'SUA_CHAVE_ANON_DO_SUPABASE';
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const mobileMenuButton =
+            document.getElementById("mobileMenuButton");
+
+        const menu =
+            document.getElementById("menu");
+
+        mobileMenuButton.addEventListener("click", () => {
+            const aberto = menu.classList.toggle("active");
+
+            mobileMenuButton.setAttribute(
+                "aria-expanded",
+                aberto ? "true" : "false"
+            );
+        });
+
+        document.querySelectorAll(".menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                menu.classList.remove("active");
+
+                mobileMenuButton.setAttribute(
+                    "aria-expanded",
+                    "false"
+                );
+            });
+        });
+
+        const contactForm =
+            document.getElementById("contactForm");
+
+        contactForm.addEventListener("submit", async event => {
+            event.preventDefault();
+
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = "A enviar...";
+            submitBtn.disabled = true;
+
+            const nome =
+                document.getElementById("nome").value.trim();
+
+            const telefone =
+                document.getElementById("telefone").value.trim();
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const servico =
+                document.getElementById("servico").value;
+
+            const mensagem =
+                document.getElementById("mensagem").value.trim();
+
+            try {
+                // 1. Salvar no Supabase
+                const { error } = await supabase
+                    .from('contatos')
+                    .insert([
+                        {
+                            nome: nome,
+                            telefone: telefone,
+                            email: email,
+                            servico: servico,
+                            mensagem: mensagem
+                        }
+                    ]);
+
+                if (error) throw error;
+
+                // 2. Preparar e abrir WhatsApp
+                const texto = [
+                    "Olá, Cuidado Consciente!",
+                    "",
+                    "*Pedido de informação pelo site*",
+                    "",
+                    "*Nome:* " + nome,
+                    "*Telefone:* " + telefone,
+                    "*E-mail:* " + (email || "Não informado"),
+                    "*Serviço:* " + servico,
+                    "*Mensagem:* " + mensagem
+                ].join("\n");
+
+                const url =
+                    "https://wa.me/351926374466?text=" +
+                    encodeURIComponent(texto);
+
+                window.open(
+                    url,
+                    "_blank",
+                    "noopener,noreferrer"
+                );
+
+                alert("Informações enviadas com sucesso!");
+                contactForm.reset();
+
+            } catch (err) {
+                console.error("Erro ao salvar:", err);
+                alert("Ocorreu um erro ao enviar os dados. Por favor, tente novamente.");
+            } finally {
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        const lightbox =
+            document.getElementById("lightbox");
+
+        const lightboxImage =
+            document.getElementById("lightboxImage");
+
+        const lightboxClose =
+            document.getElementById("lightboxClose");
+
+        document.querySelectorAll(".gallery-item").forEach(item => {
+            item.addEventListener("click", () => {
+                const image = item.querySelector("img");
+
+                lightboxImage.src = image.src;
+                lightboxImage.alt = image.alt;
+                lightbox.classList.add("active");
+            });
+        });
+
+        function fecharLightbox() {
+            lightbox.classList.remove("active");
+            lightboxImage.src = "";
+        }
+
+        lightboxClose.addEventListener(
+            "click",
+            fecharLightbox
+        );
+
+        lightbox.addEventListener("click", event => {
+            if (event.target === lightbox) {
+                fecharLightbox();
+            }
+        });
+
+        document.addEventListener("keydown", event => {
+            if (event.key === "Escape") {
+                fecharLightbox();
+            }
+        });
+
+        document.getElementById("year").textContent =
+            new Date().getFullYear();
+    </script>
+
+</body>
+</html>

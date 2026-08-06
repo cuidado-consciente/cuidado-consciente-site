@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Trabalhe Conosco | Cuidado Consciente</title>
+    <meta name="description" content="Candidate-se para trabalhar como cuidador, babysitter ou em limpezas na Cuidado Consciente. Preencha o formulário e envie a sua candidatura.">
+
+    <link rel="icon" type="image/jpeg" href="asset/logo1.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --roxo: #6f42a8;
+            --roxo-escuro: #3a205e;
+            --roxo-medio: #875bc2;
+            --roxo-claro: #f2ecfa;
+            --lavanda: #faf8fd;
+            --branco: #ffffff;
+            --texto: #2f2638;
+            --texto-suave: #71687b;
+            --borda: #e8dff1;
+            --verde: #25b66f;
+            --sombra: 0 18px 45px rgba(61, 34, 95, 0.12);
+            --raio: 22px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "DM Sans", Arial, sans-serif;
+            color: var(--texto);
+            background: var(--lavanda);
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        .container {
+            width: min(900px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .header {
+            background: var(--branco);
+            border-bottom: 1px solid var(--borda);
+        }
+
+        .nav {
+            min-height: 84px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            width: 54px;
+            height: 54px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            color: var(--roxo-escuro);
+            font-size: 19px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .logo-text small {
+            display: block;
+            color: var(--roxo);
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 18px;
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--roxo);
+            background: var(--roxo-claro);
+            border-radius: 999px;
+        }
+
+        .back-link:hover {
+            background: var(--roxo);
+            color: var(--branco);
+        }
+
+        .hero {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--roxo);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1.7px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 28px;
+            height: 2px;
+            background: currentColor;
+        }
+
+        h1 {
+            font-family: "Playfair Display", Georgia, serif;
+            color: var(--roxo-escuro);
+            font-size: clamp(32px, 4.5vw, 46px);
+            letter-spacing: -1px;
+            margin-bottom: 14px;
+        }
+
+        .hero p {
+            max-width: 560px;
+            margin: 0 auto;
+            color: var(--texto-suave);
+            font-size: 16px;
+        }
+
+        .form-wrapper {
+            padding: 20px 0 90px;
+        }
+
+        form {
+            background: var(--branco);
+            border-radius: var(--raio);
+            box-shadow: var(--sombra);
+            padding: 40px;
+        }
+
+        .form-section {
+            margin-bottom: 34px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--borda);
+        }
+
+        .form-section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 10px;
+            padding-bottom: 0;
+        }
+
+        .form-section h2 {
+            color: var(--roxo-escuro);
+            font-size: 19px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            color: var(--roxo-escuro);
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            border: 1px solid var(--borda);
+            outline: none;
+            font: inherit;
+            color: var(--texto);
+            background: var(--lavanda);
+            border-radius: 11px;
+            padding: 13px 14px;
+            transition: border 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--roxo);
+            box-shadow: 0 0 0 3px rgba(111, 66, 168, 0.1);
+        }
+
+        textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .form-group.highlight {
+            padding: 16px;
+            border: 2px solid var(--roxo);
+            border-radius: 14px;
+            background: var(--roxo-claro);
+        }
+
+        .form-group.highlight label {
+            color: var(--roxo-escuro);
+            font-size: 14px;
+        }
+
+        .form-group.highlight select {
+            border-color: var(--roxo-medio);
+            background: var(--branco);
+            font-weight: 600;
+        }
+
+        .file-upload {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            border: 2px dashed var(--roxo-medio);
+            border-radius: 14px;
+            background: var(--roxo-claro);
+            text-align: center;
+        }
+
+        .file-upload span {
+            font-size: 13px;
+            color: var(--texto-suave);
+        }
+
+        .file-upload input[type="file"] {
+            border: none;
+            background: transparent;
+            padding: 0;
+        }
+
+        .file-list {
+            font-size: 12px;
+            color: var(--roxo-escuro);
+            font-weight: 600;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .radio-option input {
+            width: auto;
+        }
+
+        .form-submit {
+            width: 100%;
+            border: 0;
+            cursor: pointer;
+            color: var(--branco);
+            background: var(--roxo);
+            border-radius: 999px;
+            padding: 16px;
+            font-weight: 700;
+            font-size: 16px;
+            transition: 0.25s ease;
+        }
+
+        .form-submit:hover {
+            background: var(--roxo-escuro);
+        }
+
+        .form-note {
+            color: var(--texto-suave);
+            font-size: 12px;
+            text-align: center;
+            margin-top: 14px;
+        }
+
+        .footer-mini {
+            text-align: center;
+            padding: 26px 0;
+            color: var(--texto-suave);
+            font-size: 12px;
+            background: var(--branco);
+            border-top: 1px solid var(--borda);
+        }
+
+        @media (max-width: 640px) {
+            form {
+                padding: 26px 18px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                gap: 14px;
+                padding: 14px 0;
+                min-height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container nav">
+            <a href="index.html" class="logo">
+                <img src="asset/logo1.jpg" alt="Logótipo Cuidado Consciente">
+                <div class="logo-text">
+                    Cuidado Consciente
+                    <small>Cuidar de dentro para fora</small>
+                </div>
+            </a>
+
+            <a class="back-link" href="index.html">← Voltar ao site</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="eyebrow">Junte-se a nós</div>
+            <h1>Trabalhe Conosco</h1>
+            <p>
+                Se você tem interesse em fazer parte da nossa equipa como
+                cuidador, babysitter ou nos serviços de limpeza, preencha o
+                formulário abaixo com atenção. Analisamos cada candidatura
+                com cuidado.
+            </p>
+        </div>
+    </section>
+
+    <section class="form-wrapper">
+        <div class="container">
+            <form id="applicationForm">
+
+                <div class="form-section">
+                    <h2>👤 Dados Pessoais</h2>
+
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label for="nomeCompleto">Nome completo</label>
+                            <input type="text" id="nomeCompleto" name="nomeCompleto" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dataNascimento">Data de nascimento</label>
+                            <input type="date" id="dataNascimento" name="dataNascimento" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nacionalidade">Nacionalidade</label>
+                            <input type="text" id="nacionalidade" name="nacionalidade" placeholder="Ex: Portuguesa" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telemovel">Número de telemóvel</label>
+                            <input type="tel" id="telemovel" name="telemovel" placeholder="+351 ..." required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="morada">Morada</label>
+                            <input type="text" id="morada" name="morada" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="distrito">Distrito</label>
+                            <input type="text" id="distrito" name="distrito" placeholder="Ex: Lisboa" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="concelho">Concelho</label>
+                            <input type="text" id="concelho" name="concelho" placeholder="Ex: Sintra" required>
+                        </div>
+
+                        <div class="form-group full">
+                            <label>Tem autorização para trabalhar em Portugal</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="autorizacaoTrabalho" value="Sim" required>
+                                    Sim
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="autorizacaoTrabalho" value="Não">
+                                    Não
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="documentos">Anexar documentos (CV e identificação)</label>
+                            <div class="file-upload">
+                                <input type="file" id="documentos" name="documentos" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+                                <span>Formatos aceites: PDF, JPG, PNG, DOC (máx. recomendado 10MB por ficheiro)</span>
+                                <div class="file-list" id="fileList"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>🧭 Área de Inscrição</h2>
+
+                    <div class="form-row">
+                        <div class="form-group full highlight">
+                            <label for="areaInscricao">Para que área se inscreve?</label>
+                            <select id="areaInscricao" name="areaInscricao" required>
+                                <option value="">Selecione uma opção</option>
+                                <option value="Cuidador">Cuidador</option>
+                                <option value="Babysitter">Babysitter</option>
+                                <option value="Limpezas">Limpezas</option>
+                                <option value="Todas">Todas</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>🎓 Formação e Certificações</h2>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="escolaridade">Nível de escolaridade</label>
+                            <select id="escolaridade" name="escolaridade" required>
+                                <option value="">Selecione</option>
+                                <option value="Ensino básico">Ensino básico</option>
+                                <option value="Ensino secundário">Ensino secundário</option>
+                                <option value="Curso profissional">Curso profissional</option>
+                                <option value="Licenciatura">Licenciatura</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cursos">Cursos ou formações na área de cuidados</label>
+                            <input type="text" id="cursos" name="cursos" placeholder="Ex: curso de geriatria">
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="certificacoes">Certificações profissionais</label>
+                            <textarea id="certificacoes" name="certificacoes" placeholder="Liste as suas certificações, se aplicável"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>💼 Experiência Profissional</h2>
+
+                    <div class="form-row">
+                        <div class="form-group full">
+                            <label for="experiencia">Experiência como cuidador de idosos, crianças ou pessoas com deficiência</label>
+                            <textarea id="experiencia" name="experiencia" placeholder="Descreva a sua experiência" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="funcoes">Funções desempenhadas</label>
+                            <input type="text" id="funcoes" name="funcoes" placeholder="Ex: higiene, alimentação, acompanhamento">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="periodo">Período de atuação</label>
+                            <input type="text" id="periodo" name="periodo" placeholder="Ex: 2 anos, 2022 a 2024">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>🔧 Competências e Disponibilidade</h2>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="idiomas">Idiomas falados</label>
+                            <input type="text" id="idiomas" name="idiomas" placeholder="Ex: Português, Inglês">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="disponibilidadeHorarios">Disponibilidade de horários</label>
+                            <input type="text" id="disponibilidadeHorarios" name="disponibilidadeHorarios" placeholder="Turnos, fins de semana, integral/parcial">
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="competencias">Competências específicas</label>
+                            <textarea id="competencias" name="competencias" placeholder="Ex: administração de medicação, mobilidade reduzida, primeiros socorros"></textarea>
+                        </div>
+
+                        <div class="form-group full">
+                            <label>Disponibilidade para deslocações</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="deslocacoes" value="Sim" required>
+                                    Sim
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="deslocacoes" value="Não">
+                                    Não
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group full">
+                            <label>Disponibilidade para serviço interno ou jornada de 8 horas diárias</label>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="jornadaInterna" value="Serviço interno" required>
+                                    Serviço interno
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="jornadaInterna" value="8 horas diárias">
+                                    8 horas diárias
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="jornadaInterna" value="Ambos">
+                                    Ambos
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="jornadaInterna" value="Nenhum">
+                                    Nenhum
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="form-submit">Enviar candidatura →</button>
+
+                <p class="form-note">
+                    Ao clicar em enviar, uma conversa será aberta no WhatsApp com o resumo
+                    da sua candidatura. Se anexou documentos, envie-os diretamente na
+                    conversa, pois o WhatsApp Web não permite anexar ficheiros automaticamente.
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer-mini">
+        © <span id="year"></span> Cuidado Consciente. Todos os direitos reservados.
+    </footer>
+
+    <!-- Scripts de Integração -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // CONFIGURAÇÃO SUPABASE (Substitua pelos seus dados do projeto no Supabase)
+        const SUPABASE_URL = 'SUA_URL_DO_SUPABASE';
+        const SUPABASE_ANON_KEY = 'SUA_CHAVE_ANON_DO_SUPABASE';
+        const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        const fileInput = document.getElementById("documentos");
+        const fileList = document.getElementById("fileList");
+
+        fileInput.addEventListener("change", () => {
+            if (fileInput.files.length > 0) {
+                const nomes = Array.from(fileInput.files).map(f => f.name);
+                fileList.textContent = "Ficheiros selecionados: " + nomes.join(", ");
+            } else {
+                fileList.textContent = "";
+            }
+        });
+
+        const applicationForm = document.getElementById("applicationForm");
+
+        applicationForm.addEventListener("submit", async function (event) {
+            event.preventDefault();
+
+            const submitBtn = applicationForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = "A enviar...";
+            submitBtn.disabled = true;
+
+            const get = (id) => document.getElementById(id).value.trim();
+            const getRadio = (name) => {
+                const checked = document.querySelector(`input[name="${name}"]:checked`);
+                return checked ? checked.value : "Não informado";
+            };
+
+            const nomesArquivos = fileInput.files.length > 0
+                ? Array.from(fileInput.files).map(f => f.name).join(", ")
+                : "Nenhum ficheiro anexado";
+
+            try {
+                // 1. Salvar no Supabase
+                const { error } = await supabase
+                    .from('candidaturas')
+                    .insert([
+                        {
+                            nome_completo: get("nomeCompleto"),
+                            data_nascimento: get("dataNascimento"),
+                            nacionalidade: get("nacionalidade"),
+                            telemovel: get("telemovel"),
+                            email: get("email"),
+                            morada: get("morada"),
+                            distrito: get("distrito"),
+                            concelho: get("concelho"),
+                            autorizacao_trabalho: getRadio("autorizacaoTrabalho"),
+                            area_inscricao: get("areaInscricao"),
+                            escolaridade: get("escolaridade"),
+                            cursos: get("cursos"),
+                            certificacoes: get("certificacoes"),
+                            experiencia: get("experiencia"),
+                            funcoes: get("funcoes"),
+                            periodo: get("periodo"),
+                            idiomas: get("idiomas"),
+                            disponibilidade_horarios: get("disponibilidadeHorarios"),
+                            competencias_especificas: get("competencias"),
+                            deslocacoes: getRadio("deslocacoes"),
+                            jornada_interna: getRadio("jornadaInterna"),
+                            arquivos_nomes: nomesArquivos
+                        }
+                    ]);
+
+                if (error) throw error;
+
+                // 2. Preparar e abrir WhatsApp
+                const texto = [
+                    "Olá, Cuidado Consciente!",
+                    "",
+                    "*Nova candidatura - Trabalhe Conosco*",
+                    "",
+                    "*— Dados Pessoais —*",
+                    "*Nome completo:* " + get("nomeCompleto"),
+                    "*Data de nascimento:* " + get("dataNascimento"),
+                    "*Nacionalidade:* " + get("nacionalidade"),
+                    "*Telemóvel:* " + get("telemovel"),
+                    "*E-mail:* " + get("email"),
+                    "*Morada:* " + get("morada"),
+                    "*Distrito:* " + get("distrito"),
+                    "*Concelho:* " + get("concelho"),
+                    "*Autorização para trabalhar em Portugal:* " + getRadio("autorizacaoTrabalho"),
+                    "*Documentos:* " + nomesArquivos,
+                    "",
+                    "*— Área de Inscrição —*",
+                    "*Área pretendida:* " + get("areaInscricao"),
+                    "",
+                    "*— Formação e Certificações —*",
+                    "*Escolaridade:* " + get("escolaridade"),
+                    "*Cursos/Formações:* " + (get("cursos") || "Não informado"),
+                    "*Certificações:* " + (get("certificacoes") || "Não informado"),
+                    "",
+                    "*— Experiência Profissional —*",
+                    "*Experiência:* " + get("experiencia"),
+                    "*Funções desempenhadas:* " + (get("funcoes") || "Não informado"),
+                    "*Período de atuação:* " + (get("periodo") || "Não informado"),
+                    "",
+                    "*— Competências e Disponibilidade —*",
+                    "*Idiomas:* " + (get("idiomas") || "Não informado"),
+                    "*Competências específicas:* " + (get("competencias") || "Não informado"),
+                    "*Disponibilidade de horários:* " + (get("disponibilidadeHorarios") || "Não informado"),
+                    "*Disponibilidade para deslocações:* " + getRadio("deslocacoes"),
+                    "*Serviço interno / 8h diárias:* " + getRadio("jornadaInterna")
+                ].join("\n");
+
+                const url = "https://wa.me/351926374466?text=" + encodeURIComponent(texto);
+
+                window.open(url, "_blank", "noopener,noreferrer");
+
+                alert("Candidatura enviada com sucesso!");
+                applicationForm.reset();
+                fileList.textContent = "";
+
+            } catch (err) {
+                console.error("Erro ao salvar candidatura:", err);
+                alert("Ocorreu um erro ao enviar sua candidatura. Por favor, tente novamente.");
+            } finally {
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+    </script>
+
+</body>
+</html>
