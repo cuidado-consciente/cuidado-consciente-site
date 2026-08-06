@@ -2032,8 +2032,8 @@
                 contactForm.reset();
 
             } catch (err) {
-                console.error("Erro ao salvar:", err);
-                alert("Ocorreu um erro ao enviar os dados. Por favor, tente novamente.");
+                console.error("Erro detalhado:", err);
+                alert("Erro ao enviar: " + (err.message || "Erro desconhecido") + ". Verifique sua conexão ou a configuração do banco.");
             } finally {
                 submitBtn.textContent = originalBtnText;
                 submitBtn.disabled = false;
