@@ -1788,11 +1788,11 @@
                     </div>
 
                     <button class="button form-submit" type="submit">
-                        Enviar pelo WhatsApp →
+                        Enviar mensagem →
                     </button>
 
                     <p class="form-note">
-                        Ao enviar, será aberta uma conversa no WhatsApp.
+                        As suas informações serão enviadas para a nossa equipa.
                     </p>
                 </form>
             </div>
@@ -2005,30 +2005,7 @@
 
                 if (error) throw error;
 
-                // 2. Preparar e abrir WhatsApp
-                const texto = [
-                    "Olá, Cuidado Consciente!",
-                    "",
-                    "*Pedido de informação pelo site*",
-                    "",
-                    "*Nome:* " + nome,
-                    "*Telefone:* " + telefone,
-                    "*E-mail:* " + (email || "Não informado"),
-                    "*Serviço:* " + servico,
-                    "*Mensagem:* " + mensagem
-                ].join("\n");
-
-                const url =
-                    "https://wa.me/351926374466?text=" +
-                    encodeURIComponent(texto);
-
-                window.open(
-                    url,
-                    "_blank",
-                    "noopener,noreferrer"
-                );
-
-                alert("Informações enviadas com sucesso!");
+                alert("Enviado com sucesso!");
                 contactForm.reset();
 
             } catch (err) {

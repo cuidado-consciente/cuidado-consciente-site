@@ -579,9 +579,7 @@
                 <button type="submit" class="form-submit">Enviar candidatura →</button>
 
                 <p class="form-note">
-                    Ao clicar em enviar, uma conversa será aberta no WhatsApp com o resumo
-                    da sua candidatura. Se anexou documentos, envie-os diretamente na
-                    conversa, pois o WhatsApp Web não permite anexar ficheiros automaticamente.
+                    Ao clicar em enviar, a sua candidatura será processada pela nossa equipa.
                 </p>
             </form>
         </div>
@@ -666,50 +664,7 @@
 
                 if (error) throw error;
 
-                // 2. Preparar e abrir WhatsApp
-                const texto = [
-                    "Olá, Cuidado Consciente!",
-                    "",
-                    "*Nova candidatura - Trabalhe Conosco*",
-                    "",
-                    "*— Dados Pessoais —*",
-                    "*Nome completo:* " + get("nomeCompleto"),
-                    "*Data de nascimento:* " + get("dataNascimento"),
-                    "*Nacionalidade:* " + get("nacionalidade"),
-                    "*Telemóvel:* " + get("telemovel"),
-                    "*E-mail:* " + get("email"),
-                    "*Morada:* " + get("morada"),
-                    "*Distrito:* " + get("distrito"),
-                    "*Concelho:* " + get("concelho"),
-                    "*Autorização para trabalhar em Portugal:* " + getRadio("autorizacaoTrabalho"),
-                    "*Documentos:* " + nomesArquivos,
-                    "",
-                    "*— Área de Inscrição —*",
-                    "*Área pretendida:* " + get("areaInscricao"),
-                    "",
-                    "*— Formação e Certificações —*",
-                    "*Escolaridade:* " + get("escolaridade"),
-                    "*Cursos/Formações:* " + (get("cursos") || "Não informado"),
-                    "*Certificações:* " + (get("certificacoes") || "Não informado"),
-                    "",
-                    "*— Experiência Profissional —*",
-                    "*Experiência:* " + get("experiencia"),
-                    "*Funções desempenhadas:* " + (get("funcoes") || "Não informado"),
-                    "*Período de atuação:* " + (get("periodo") || "Não informado"),
-                    "",
-                    "*— Competências e Disponibilidade —*",
-                    "*Idiomas:* " + (get("idiomas") || "Não informado"),
-                    "*Competências específicas:* " + (get("competencias") || "Não informado"),
-                    "*Disponibilidade de horários:* " + (get("disponibilidadeHorarios") || "Não informado"),
-                    "*Disponibilidade para deslocações:* " + getRadio("deslocacoes"),
-                    "*Serviço interno / 8h diárias:* " + getRadio("jornadaInterna")
-                ].join("\n");
-
-                const url = "https://wa.me/351926374466?text=" + encodeURIComponent(texto);
-
-                window.open(url, "_blank", "noopener,noreferrer");
-
-                alert("Candidatura enviada com sucesso!");
+                alert("Enviado com sucesso!");
                 applicationForm.reset();
                 fileList.textContent = "";
 
