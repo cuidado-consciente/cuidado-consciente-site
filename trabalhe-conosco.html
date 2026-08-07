@@ -627,12 +627,36 @@
                 return checked ? checked.value : "Não informado";
             };
 
-            const nomesArquivos = fileInput.files.length > 0
-                ? Array.from(fileInput.files).map(f => f.name).join(", ")
-                : "Nenhum ficheiro anexado";
+            const files = fileInput.files;
+            let arquivosUrls = "Nenhum ficheiro anexado";
 
             try {
-                // 1. Salvar no Supabase
+                // 1. Upload dos arquivos (se houver)
+                if (files.length > 0) {
+                    const uploadedUrls = [];
+                    for (const file of files) {
+                        const fileExt = file.name.split('.').pop();
+                        const fileName = `${Math.random().toString(36).substring(2)}-${Date.now()}.${fileExt}`;
+                        const filePath = `candidaturas/${fileName}`;
+
+                        const { data: uploadData, error: uploadError } = await supabaseClient
+                            .storage
+                            .from('documentos')
+                            .upload(filePath, file);
+
+                        if (uploadError) throw uploadError;
+
+                        const { data: { publicUrl } } = supabaseClient
+                            .storage
+                            .from('documentos')
+                            .getPublicUrl(filePath);
+
+                        uploadedUrls.push(publicUrl);
+                    }
+                    arquivosUrls = uploadedUrls.join(", ");
+                }
+
+                // 2. Salvar no Supabase
                 const { error } = await supabaseClient
                     .from('candidaturas')
                     .insert([
@@ -658,7 +682,7 @@
                             competencias_especificas: get("competencias"),
                             deslocacoes: getRadio("deslocacoes"),
                             jornada_interna: getRadio("jornadaInterna"),
-                            arquivos_nomes: nomesArquivos
+                            arquivos_nomes: arquivosUrls
                         }
                     ]);
 

@@ -44,8 +44,10 @@ CREATE TABLE IF NOT EXISTS candidaturas (
 
 ALTER TABLE contatos ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Permitir inserção pública de contatos" ON contatos FOR INSERT WITH CHECK (true);
-CREATE POLICY "Permitir leitura apenas autenticada" ON contatos FOR SELECT USING (auth.role() = 'authenticated');
+CREATE POLICY "Permitir leitura para todos" ON contatos FOR SELECT USING (true);
+CREATE POLICY "Permitir exclusão para todos" ON contatos FOR DELETE USING (true);
 
 ALTER TABLE candidaturas ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "Permitir inserção pública de candidaturas" ON candidaturas FOR INSERT WITH CHECK (true);
-CREATE POLICY "Permitir leitura apenas autenticada" ON candidaturas FOR SELECT USING (auth.role() = 'authenticated');
+CREATE POLICY "Permitir leitura para todos" ON candidaturas FOR SELECT USING (true);
+CREATE POLICY "Permitir exclusão para todos" ON candidaturas FOR DELETE USING (true);
