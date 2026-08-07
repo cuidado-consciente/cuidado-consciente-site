@@ -291,7 +291,11 @@
                         val = new Date(val).toLocaleString('pt-BR');
                     } else if (h === 'arquivos_nomes' && val !== '-' && val !== 'Nenhum ficheiro anexado') {
                         const urls = val.split(', ');
-                        val = urls.map((url, index) => `<a href="${url}" target="_blank" class="file-link">Ver Ficheiro ${index + 1}</a>`).join(' ');
+                        val = urls.map((url, index) => {
+                            // Se a URL não for completa, tenta montar com o caminho do Storage
+                            const finalUrl = url.startsWith('http') ? url : `https://dekoqjzjheivlkctepne.supabase.co/storage/v1/object/public/documentos/${url}`;
+                            return `<a href="${finalUrl}" target="_blank" class="file-link">Ver Ficheiro ${index + 1}</a>`;
+                        }).join(' ');
                     }
                     html += `<td>${val}</td>`;
                 });
